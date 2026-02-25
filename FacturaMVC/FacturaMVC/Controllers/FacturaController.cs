@@ -49,5 +49,34 @@ namespace FacturaMVC.Controllers
             return View(factura);
         }
 
+        [HttpGet("descargar/{id:int}")]
+        public FileResult Descargar(int id)
+        {
+            var factura = _facturaService.ObtenerDetalle(id);
+
+            var contenido = $"""
+                Factura #{factura.Id}
+                Cliente: {factura.NombreCliente}
+                Fecha: {factura.Fecha:dd/MM/yyyy HH:mm}
+
+                Detalle:
+                """;
+
+            foreach (var d in factura.Detalles)
+            {
+                contenido += $"\n{d.NombreProducto} x{d.Cantidad} @ {d.PrecioUnitario:C} = {d.PrecioUnitario * d.Cantidad:C}";
+            }
+
+            contenido += $"""
+
+                Subtotal: {factura.Subtotal:C}
+                Impuesto: {factura.Impuesto:C}
+                Total: {factura.Total:C}
+                """;
+
+            var bytes = System.Text.Encoding.UTF8.GetBytes(contenido);
+            return File(bytes, "text/plain", $"Factura_{factura.Id}.txt");
+        }
+
     }
 }

@@ -39,5 +39,8 @@
         <p class="fs-5"><strong>Total:</strong> @Model.Total.ToString("C")</p>
 
         <a asp-action="Index" class="btn btn-secondary mt-2">Volver al listado</a>
+        <a asp-action="Descargar" asp-route-id="@Model.Id" class="btn btn-warning mt-2">
+            Descargar Factura
+        </a>
     </div>
 </div>
