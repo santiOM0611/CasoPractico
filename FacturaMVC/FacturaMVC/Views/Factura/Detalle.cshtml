@@ -1,0 +1,43 @@
+﻿@model FacturaMVC.Models.Factura
+
+@{
+    ViewData["Title"] = "Detalle de Factura";
+}
+
+<h2 class="mb-3">Detalle de Factura #@Model.Id</h2>
+
+<div class="card shadow mb-4" style="max-width: 600px;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.NombreCliente</h5>
+        <p class="card-text">
+            <strong>Fecha:</strong> @Model.Fecha.ToString("dd/MM/yyyy HH:mm")
+        </p>
+
+        <table class="table table-sm mt-3">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unit.</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var d in Model.Detalles)
+                {
+                    <tr>
+                        <td>@d.NombreProducto</td>
+                        <td>@d.Cantidad</td>
+                        <td>@d.PrecioUnitario.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <hr />
+        <p><strong>Subtotal:</strong> @Model.Subtotal.ToString("C")</p>
+        <p><strong>Impuesto (13%):</strong> @Model.Impuesto.ToString("C")</p>
+        <p class="fs-5"><strong>Total:</strong> @Model.Total.ToString("C")</p>
+
+        <a asp-action="Index" class="btn btn-secondary mt-2">Volver al listado</a>
+    </div>
+</div>

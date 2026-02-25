@@ -1,0 +1,17 @@
+﻿@model FacturaMVC.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalle de Producto";
+}
+
+<h2 class="mb-3">Detalle del Producto</h2>
+
+<div class="card shadow" style="max-width: 400px;">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Nombre</h4>
+        <p class="card-text">
+            <strong>Precio:</strong> @Model.Precio.ToString("C")
+        </p>
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    </div>
+</div>

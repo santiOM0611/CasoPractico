@@ -1,0 +1,28 @@
+﻿@model FacturaMVC.Models.ProductoViewModel
+
+@{
+    ViewData["Title"] = "Registrar Producto";
+}
+
+<h2 class="mb-3">Registrar Producto</h2>
+
+<form asp-action="Crear" method="post" class="row g-3">
+
+    <div class="col-md-6">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Precio" class="form-label"></label>
+        <input asp-for="Precio" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Precio" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+
+</form>

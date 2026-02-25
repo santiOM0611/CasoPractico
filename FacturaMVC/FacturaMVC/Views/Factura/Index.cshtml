@@ -1,0 +1,37 @@
+﻿@model List<FacturaMVC.Models.Factura>
+
+@{
+    ViewData["Title"] = "Facturas";
+}
+
+<h2 class="mb-3">Facturas</h2>
+
+<a asp-action="Crear" class="btn btn-success mb-3">Nueva Factura</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Subtotal</th>
+            <th>Impuesto</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>  
+    <tbody>
+        @foreach (var f in Model)
+        {
+            <tr>
+                <td>@f.NombreCliente</td>
+                <td>@f.Fecha.ToShortDateString()</td>
+                <td>@f.Subtotal.ToString("C")</td>
+                <td>@f.Impuesto.ToString("C")</td>
+                <td><strong>@f.Total.ToString("C")</strong></td>
+                <td>
+                    <a asp-action="Detalle" asp-route-id="@f.Id" class="btn btn-primary btn-sm">Ver detalle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

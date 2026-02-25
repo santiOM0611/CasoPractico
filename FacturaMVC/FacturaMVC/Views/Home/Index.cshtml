@@ -1,8 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Comercializadora El Éxito S.A.";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mt-5">
+    <h1 class="mb-4">Comercializadora El Éxito S.A.</h1>
+    <p class="mb-4 text-muted">Seleccione el módulo al que desea ingresar</p>
+
+    <div class="d-flex justify-content-center gap-4">
+        <a asp-controller="Producto" asp-action="Index" class="btn btn-primary btn-lg">Productos</a>
+        <a asp-controller="Factura" asp-action="Index" class="btn btn-success btn-lg">Facturas</a>
+    </div>
 </div>
