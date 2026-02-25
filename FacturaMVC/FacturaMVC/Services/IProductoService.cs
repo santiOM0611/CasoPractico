@@ -6,6 +6,8 @@ namespace FacturaMVC.Services
     {
         List<Producto> ObtenerTodos();
         Producto? ObtenerDetalle(int id);
-        bool CrearProducto(Producto producto); 
+        bool CrearProducto(Producto producto);
+        bool EditarProducto(Producto producto);
+        bool EliminarProducto(int id);
     }
 }

@@ -50,5 +50,44 @@ namespace FacturaMVC.Controllers
             _productoService.CrearProducto(producto);
             return RedirectToAction("Index");
         }
+
+        [HttpGet("editar/{id:int}")]
+        public IActionResult Editar(int id)
+        {
+            var producto = _productoService.ObtenerDetalle(id);
+            if (producto == null) return NotFound();
+
+            var model = new ProductoViewModel
+            {
+                Nombre = producto.Nombre,
+                Precio = producto.Precio
+            };
+
+            return View(model);
+        }
+
+        [HttpPost("editar/{id:int}")]
+        public IActionResult Editar(int id, ProductoViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var producto = new Producto
+            {
+                Id = id,
+                Nombre = model.Nombre,
+                Precio = model.Precio
+            };
+
+            _productoService.EditarProducto(producto);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost("eliminar/{id:int}")]
+        public IActionResult Eliminar(int id)
+        {
+            _productoService.EliminarProducto(id);
+            return RedirectToAction("Index");
+        }
     }
 }
